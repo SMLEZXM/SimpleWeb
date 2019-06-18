@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.*,java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,26 @@
    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<%
 
+
+String uu="uu";
+Date lastAccessTime = new Date(session.getLastAccessedTime());
+
+if(session.getAttribute("account")==null){
+	out.println("<script language='javascript'>alert('欢迎登录本平台，登陆后才可以使用功能哟');"+"window.location.href='login.jsp';</script>");
+
+}else{
+	
+	uu=session.getAttribute("account").toString();
+	lastAccessTime = new Date(session.getLastAccessedTime());
+}
+
+
+%>
+
+<h3>欢迎你，用户：<%= uu %></h3>
+<h3>上次登录记录:<%= lastAccessTime%></h3>
 <div class="container">
 <div class="container">
 	<div class="jumbotron">
@@ -22,27 +42,30 @@
 	</div>
 </div>
 	<div class="container">
-	<h2>表格</h2>
-	<p> .active 类将悬停的颜色应用在行或者单元格上:</p>                                        
+	
+
+	
+	<h2>主机列表</h2>
+	<a herf=login.jsp>添加主机</a>                                      
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>#</th>
-				<th>Firstname</th>
+				<th>序号</th>
+				<th>IP</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>1</td>
-				<td>Anna</td>
+				<td>0.0.0.0</td>
 			</tr>
 			<tr>
 				<td>2</td>
-				<td>Debbie</td>
+				<td>0.0.0.0.</td>
 			</tr>
 			<tr>
 				<td>3</td>
-				<td>John</td>
+				<td>0.0.0.0</td>
 			</tr>
 		</tbody>
 	</table>
@@ -73,38 +96,12 @@
 			</p>
 		</div>
 	</div>
-	<button type="button" class="btn btn-default btn-lg">
-	<span class="glyphicon glyphicon-user"></span> User
+	<button type="button" class="btn btn-default btn-lg" >
+	<span class="glyphicon glyphicon-user"></span> 登出
+	
 </div>
 
-<div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
-                &times;
-            </button>
-            成功！很好地完成了提交。
-        </div>
-        <div class="alert alert-info alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
-                &times;
-            </button>
-            信息！请注意这个信息。
-        </div>
-        <div class="alert alert-warning alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
-                &times;
-            </button>
-            警告！请不要提交。
-        </div>
-        <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
-                &times;
-            </button>
-            错误！请进行一些更改。
-        </div>
+
 
 </body>
 </html>
