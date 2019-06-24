@@ -68,7 +68,7 @@ public class UsePsql {
 					account="该账号已被注册";
 				}else {
 				
-					 	ps=UsePsql.connectToPsql(conn).prepareStatement("insert into users (name,password)  values(?,?)");
+					 	ps=UsePsql.connectToPsql(conn).prepareStatement("insert into users (name,md5pw)  values(?,?)");
 						ps.setString(1, account);
 						ps.setString(2, password);
 
@@ -99,7 +99,7 @@ public class UsePsql {
 				ResultSet rs=stmt.executeQuery("select * from users where name='" + account + "'");
 				System.out.println("select * from users where name='" + account + "'");
 				if(rs.next()) {
-					if(password.equals(rs.getString(3))) {
+					if(password.equals(rs.getString(7))) {
 						account="登录成功";
 					}else {
 						account="用户名或密码错误";

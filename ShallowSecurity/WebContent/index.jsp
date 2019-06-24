@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*,java.util.*" %>
+<%! int flag = 0;%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,14 +22,17 @@ if(session.getAttribute("account")==null){
 	out.println("<script language='javascript'>alert('欢迎登录本平台，登陆后才可以使用功能哟');"+"window.location.href='login.jsp';</script>");
 
 }else{
-	
+
 	uu=session.getAttribute("account").toString();
 	lastAccessTime = new Date(session.getLastAccessedTime());
+	
 }
 
 
 %>
-
+<%
+out.println("IP:"+request.getRemoteAddr());
+%>
 <h3>欢迎你，用户：<%= uu %></h3>
 <h3>上次登录记录:<%= lastAccessTime%></h3>
 <div class="container">
@@ -96,12 +100,11 @@ if(session.getAttribute("account")==null){
 			</p>
 		</div>
 	</div>
-	<button type="button" class="btn btn-default btn-lg" >
+
+	<button type="button" class="btn btn-default btn-lg " Onclick=window.location.href="loginout.jsp" >
 	<span class="glyphicon glyphicon-user"></span> 登出
 	
 </div>
-
-
 
 </body>
 </html>

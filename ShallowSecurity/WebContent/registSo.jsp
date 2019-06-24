@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.zx.UsePsql"%>
+<%@page import="com.zx.MD5" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +17,17 @@ request.setCharacterEncoding("utf-8");
 String account=request.getParameter("user");
 String password=request.getParameter("pwd");
 String repassword=request.getParameter("rpwd");
+String mimi="dd";
 if(account==null){
 	out.println("<script language='javascript'>window.location.href='index.jsp';</script>");
 }else{
+	MD5 md=new MD5(password);
+	password=md.mainn();
+	MD5 mdr=new MD5(repassword);
+	repassword=mdr.mainn();
+	
+	
+	
 if(password.equals(repassword)){
 String sex=request.getParameter("sex");
 account=UsePsql.registUser(account, password);
@@ -34,5 +43,6 @@ if(account.equals("注册成功")){
 }
 }
 %>
+
 </body>
 </html>
